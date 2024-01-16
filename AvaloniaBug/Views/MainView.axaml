@@ -1,0 +1,26 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:AvaloniaBug.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaBug.Views.MainView"
+        Title="MainView">
+        <Design.DataContext>
+                <vms:MainViewModel />
+        </Design.DataContext>
+
+        <DropDownButton HorizontalAlignment="Center" Content="{Binding SelectedItem.SelectedTitle}">
+                <DropDownButton.Flyout>
+                        <Flyout>
+                                <TreeView ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedItem}" >
+                                        <TreeView.ItemTemplate>
+                                                <TreeDataTemplate ItemsSource="{Binding SubCategories}">
+                                                        <TextBlock Text="{Binding Title}"/>
+                                                </TreeDataTemplate>
+                                        </TreeView.ItemTemplate>
+                                </TreeView>
+                        </Flyout>
+                </DropDownButton.Flyout>
+        </DropDownButton>
+</Window>
